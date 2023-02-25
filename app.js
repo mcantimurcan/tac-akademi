@@ -12,4 +12,12 @@ app.get('/about', function(req, res){
     res.render('about')
 })
 
+app.get('/girisyap', function(req, res){
+    res.render('login')
+})
+
+app.get('/uyeol', function(req, res){
+    res.render('signup')
+})
+
 app.listen(8000)
