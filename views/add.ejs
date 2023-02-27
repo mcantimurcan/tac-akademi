@@ -1,0 +1,15 @@
+<%-include('includes/header')-%>
+
+<body>
+    <section style="margin-top: 150px;">
+        <form action="/admin/add" method="post">
+            <input type="text" name="title" placeholder="Başlık" required>
+            <input type="text" name="description" placeholder="Ürün Açıklaması">
+            <input type="text" name="price" placeholder="Ürün Fiyatı" required>
+            <input type="text" name="image" placeholder="Resim" required>
+            <input type="submit" value="Kaydet">
+        </form>
+    </section>
+</body>
+
+<%-include('includes/footer')-%>
