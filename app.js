@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const expressLayouts = require('express-ejs-layouts')
 const productRoutes = require('./routes/productRoutes')
 const adminRoutes = require('./routes/adminRoutes')
+const adminAuthRoutes = require('./routes/adminAuthRouter')
 const path = require('path')
 const mongoose = require('mongoose')
 
@@ -26,6 +27,8 @@ app.get('/', function(req, res){
 
 app.use('/admin' ,adminRoutes)
 app.use('/urunler', productRoutes)
+app.use(adminAuthRoutes)
+
 
 app.get('/hakkimizda', function(req, res){
     res.render('about', {title: 'Hakkımızda'})
