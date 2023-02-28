@@ -17,12 +17,13 @@ mongoose.connect(dbURL, {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.set('view engine', 'ejs')
 
-app.use(express.static(path.join(__dirname, 'assets')))
+app.use(express.static('assets'))
+app.use(express.static('vendor'))
 app.use(express.urlencoded({extended: true}))
 app.use(morgan('dev'))
 
 app.get('/', function(req, res){
-    res.render('index', {title: 'Ana Sayfa'})
+    res.render('user/index', {title: 'Ana Sayfa'})
 })
 
 app.use('/admin' ,adminRoutes)
@@ -31,18 +32,18 @@ app.use(adminAuthRoutes)
 
 
 app.get('/hakkimizda', function(req, res){
-    res.render('about', {title: 'Hakkımızda'})
+    res.render('user/about', {title: 'Hakkımızda'})
 })
 
 app.get('/girisyap', function(req, res){
-    res.render('login', {title: 'Giriş Yap'})
+    res.render('user/login', {title: 'Giriş Yap'})
 })
 
 app.get('/uyeol', function(req, res){
-    res.render('signup', {title: 'Kayıt Ol'})
+    res.render('user/signup', {title: 'Kayıt Ol'})
 })
 
 app.use((req,res) => {
-    res.status(404).render('404', {title: '404 Not Found'})
+    res.status(404).render('user/404', {title: '404 Not Found'})
 })
 

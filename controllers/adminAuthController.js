@@ -1,7 +1,7 @@
 const Admin = require('../models/admin')
 
 const admin_login_get = (req, res) => {
-    res.render('adminlogin')
+    res.render('admin/adminlogin')
 }
 
 const admin_login_post = (req, res) => {
