@@ -22,7 +22,7 @@ const admin_add_product = (req,res) => {
     const product = new Product(req.body)
 
     product.save().then((result) => {
-        res.redirect('/admin')
+        res.redirect('/admin/products')
     }).catch((err) => {
         console.log(err)
     })
@@ -31,16 +31,21 @@ const admin_add_product = (req,res) => {
 const admin_delete_post = (req, res) => {
     const id = req.params.id
     Product.findByIdAndDelete(id).then((result) => {
-        res.json({link: '/admin'})
+        res.json({link: '/admin/products'})
     }).catch((err) => {
         console.log(err)
     })
+}
+
+const add_admin = (req, res) => {
+    res.render('admin/addadmin')
 }
 
 module.exports = {
     admin_index,
     admin_products,
     admin_add,
+    add_admin,
     admin_add_product,
     admin_delete_post
 }

@@ -1,15 +1,61 @@
 <%-include('includes/header')-%>
 
-<body>
-    <section style="margin-top: 150px;">
-        <form action="/admin/add" method="post">
-            <input type="text" name="title" placeholder="Başlık" required>
-            <input type="text" name="description" placeholder="Ürün Açıklaması">
-            <input type="text" name="price" placeholder="Ürün Fiyatı" required>
-            <input type="text" name="image" placeholder="Resim" required>
-            <input type="submit" value="Kaydet">
-        </form>
-    </section>
-</body>
+    <div class="container">
 
-<%-include('includes/footer')-%>
+        <section class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ürün Ekle</h3>
+            </div>
+            <hr>
+            <div class="panel-body">
+                <form action="/admin/add" method="post" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Ürün Başlığı</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="title" id="name"
+                                placeholder="Ürün Başlığı Girin" required>
+                        </div>
+                    </div> <!-- form-group // -->
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Ürün Fiyatı</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="price" id="name"
+                                placeholder="Ürün Fiyatı Girin" required>
+                        </div>
+                    </div> <!-- form-group // -->
+                    <div class="form-group">
+                        <label for="about" class="col-sm-3 control-label">Ürün Açıklaması</label>
+                        <div class="col-sm-9">
+                            <textarea name="description" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tech" class="col-sm-3 control-label">Ürün Kategorisi</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" required>
+                                <option value="">Выберите</option>
+                                <option value="texnolog2">Технолог 2</option>
+                                <option value="texnolog3">Технолог 3</option>
+                            </select>
+                        </div>
+                    </div> <!-- form-group // -->
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Ürün Kapak Fotoğrafı</label>
+                        <div class="col-sm-3">
+                            <input type="file" name="file_img" required>
+                        </div>
+                    </div> <!-- form-group // -->
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" value="Kaydet" class="btn btn-primary">Kaydet</button>
+                        </div>
+                    </div> <!-- form-group // -->
+                </form>
+
+            </div><!-- panel-body // -->
+        </section><!-- panel// -->
+
+
+    </div> <!-- container// -->
+    <%-include('includes/footer')-%>
