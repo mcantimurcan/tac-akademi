@@ -1,4 +1,205 @@
-<%- include('includes/header') -%>
+<%-include('includes/header')-%>
 
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-<%- include('includes/footer') -%>
+  <body>
+    <div class="container">
+      <div class="row flex-lg-nowrap">
+
+        <div class="col">
+          <div class="e-tabs mb-3 px-3">
+            <ul class="nav nav-tabs">
+              <li class="nav-item"><a class="nav-link active" href="#">Adminler</a></li>
+            </ul>
+          </div>
+
+          <div class="row flex-lg-nowrap">
+            <div class="col mb-3">
+              <div class="e-panel card">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h6 class="mr-2"><span>Adminler</span><small class="px-1"></small></h6>
+                  </div>
+                  <div class="e-table">
+                    <div class="table-responsive table-lg mt-3">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th class="align-top">
+                              <div
+                                class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0">
+                                <input type="checkbox" class="custom-control-input" id="all-items">
+                                <label class="custom-control-label" for="all-items"></label>
+                              </div>
+                            </th>
+                            <th>Photo</th>
+                            <th class="max-width">Name</th>
+                            <th class="sortable">Date</th>
+                            <th> </th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% admins.forEach(admin => { %>
+                            <tr>
+                              <td class="align-middle">
+                                <div
+                                  class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
+                                  <input type="checkbox" class="custom-control-input" id="item-1">
+                                  <label class="custom-control-label" for="item-1"></label>
+                                </div>
+                              </td>
+                              <td class="align-middle text-center">
+                                <div class="bg-light d-inline-flex justify-content-center align-items-center align-top"
+                                  style="width: 35px; height: 35px; border-radius: 3px;"><i class="fa fa-fw fa-photo"
+                                    style="opacity: 0.8;"></i></div>
+                              </td>
+                              <td class="text-nowrap align-middle">
+                                <%=admin.username%>
+                              </td>
+                              <td class="text-nowrap align-middle"><span>
+                                  <%=admin.password%>
+                                </span></td>
+                              <td class="text-center align-middle"><i
+                                  class="fa fa-fw text-secondary cursor-pointer fa-toggle-on"></i></td>
+                              <td class="text-center align-middle">
+                                <div class="btn-group align-top">
+                                  <button class="btn btn-sm btn-outline-secondary badge delete"
+                                    data-doc="<%=admin._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                </div>
+                              </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                      <ul class="pagination mt-3 mb-0">
+                        <li class="disabled page-item"><a href="#" class="page-link">‹</a></li>
+                        <li class="active page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">›</a></li>
+                        <li class="page-item"><a href="#" class="page-link">»</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center px-xl-3">
+                    <a href="/admin/add" class="btn btn-success btn-block" type="button" data-toggle="modal"
+                      data-target="#user-form-modal">Yeni Admin Ekle</a>
+                  </div>
+                  <hr class="my-3">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Form Modal -->
+          <div class="modal fade" role="dialog" tabindex="-1" id="user-form-modal">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Admin Ekle</h5>
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="py-1">
+                    <form class="form" action="/admin/addadmin" method="post" novalidate="">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>İsim Soyisim</label>
+                                <input class="form-control" type="text" name="name" placeholder="İsim Soyisim Girin" required>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Kullanıcı Adı</label>
+                                <input class="form-control" type="text" name="username" placeholder="Kullanıcı Adı Girin" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>E-mail</label>
+                                <input class="form-control" type="text" name="email" placeholder="user@example.com" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Şifre</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="••••••">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn btn-primary" type="submit">Kaydet</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const del = document.querySelectorAll('button.delete')
+      const delLinks = [].slice.call(del)
+
+      delLinks.forEach((item, i) => {
+        item.addEventListener('click', (e) => {
+          const endpoint = `/admin/delete/${item.dataset.doc}`
+          fetch(endpoint, {
+            method: 'DELETE'
+          }).then((response) => response.json())
+            .then((data) => window.location.href = data.link)
+            .catch((err) => {
+              console.log(err)
+            })
+        })
+      })
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/demo/chart-pie-demo.js"></script>
+
+  </body>

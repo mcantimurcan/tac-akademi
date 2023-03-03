@@ -1,4 +1,5 @@
 const Product = require('../models/products')
+const Admin = require('../models/admin')
 
 const admin_index = (req, res) => {
     res.render('admin/adminHome')
@@ -37,15 +38,32 @@ const admin_delete_post = (req, res) => {
     })
 }
 
-const add_admin = (req, res) => {
-    res.render('admin/addadmin')
+const add_new_admin_page = (req, res) => {
+    Admin.find().sort({createdAt: -1})
+    .then((result) => {
+        res.render('admin/addadmin', {title: 'Admin Paneli', admins: result})
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
+const add_new_admin = (req, res) => {
+    const admin = new Admin(req.body)
+
+    admin.save().then((result) => {
+        res.redirect('/admin/addadmin')
+    }).catch((err) => {
+        console.log(err)
+    })
 }
 
 module.exports = {
     admin_index,
     admin_products,
     admin_add,
-    add_admin,
+    add_new_admin,
+    add_new_admin_page,
     admin_add_product,
     admin_delete_post
 }

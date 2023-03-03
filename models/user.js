@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bcypt = require('bcrypt')
 
-const adminSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -22,12 +22,12 @@ const adminSchema = new mongoose.Schema({
     }
 })
 
-adminSchema.pre('save', async function(next){
+userSchema.pre('save', async function(next){
     const salt = await bcypt.genSalt()
     this.password = await bcypt.hash(this.password, salt)
     next()
 })
 
-const Admin = new mongoose.model('admin', adminSchema)
+const User = new mongoose.model('admin', userSchema)
 
-module.exports = Admin
+module.exports = User
